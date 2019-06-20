@@ -82,7 +82,7 @@ class CampaignController extends Controller
         $campaignService = new CampaignService();
         $campaignService->createCampaign($data, $user);
 
-        return redirect(route('admin.campaigns.index'))->with([
+        return redirect(route('campaigns.index'))->with([
             'msg' => [
                 'type' => 'success',
                 'txt' => 'Campaign Created Successfully'

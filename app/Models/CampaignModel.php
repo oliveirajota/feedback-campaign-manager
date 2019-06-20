@@ -11,7 +11,7 @@ class CampaignModel extends Model
 
     protected $table = 'campaign';
 
-    protected $fillable = ['owner_id', 'name', 'description', 'start_at', 'expire_at'];
+    protected $fillable = ['uuid', 'owner_id', 'name', 'description', 'start_at', 'expire_at'];
 
     public function questions()
     {
