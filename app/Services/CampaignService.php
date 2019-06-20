@@ -88,7 +88,6 @@ class CampaignService
 
         $campaignCollaborators = $campaign->collaborators()->get();
 
-
         foreach ($campaignCollaborators as $campaignCollaborator){
         $collaborator = $campaignCollaborator->collaborator();
             $this->addQuestionsToCollaborator($campaign, $collaborator);
@@ -120,7 +119,7 @@ class CampaignService
                 $campaignCollaboratorAnswer = new CampaignCollaboratorAnswerModel([
                     'campaign_id' => $campaign->getId(),
                     'collaborator_id' => $collaborator->getId(),
-                    'subject_id' => $campaignCollaborator->getId(),
+                    'subject_id' => $campaignCollaborator->getCollaboratorId(),
                     'campaign_question_id' => $collaboratorQuestion->getId(),
                 ]);
                 $campaignCollaboratorAnswer->save();

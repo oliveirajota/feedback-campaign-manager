@@ -10,7 +10,7 @@ class CampaignCollaboratorModel extends Model
     use ModelBehavior;
 
     protected $table = 'campaign_collaborator';
-    protected $fillable = ['uuid', 'campaign_id', 'collaborator_id', 'status'];
+    protected $fillable = ['campaign_id', 'collaborator_id', 'status'];
 
     public function collaborator()
     {
@@ -23,5 +23,10 @@ class CampaignCollaboratorModel extends Model
         $data['collaborator'] = $this->collaborator()->toArray();
 
         return $data;
+    }
+
+    public function getCollaboratorId()
+    {
+        return $this->collaborator()->getId();
     }
 }

@@ -9,5 +9,5 @@ class CampaignAnswerModel extends Model
     use ModelBehavior;
 
     protected $table = 'campaign_answer';
-    protected $fillable = ['uuid', 'campaign_id', 'collaborator_id', 'campaign_question_id', 'private', 'result'];
+    protected $fillable = ['campaign_id', 'collaborator_id', 'campaign_question_id', 'private', 'result'];
 }

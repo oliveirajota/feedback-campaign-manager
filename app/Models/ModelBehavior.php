@@ -16,7 +16,7 @@ trait ModelBehavior
         parent::boot();
 
         static::creating(function ($model) {
-            $model->uuid = Uuid::uuid4();
+            $model->id= Uuid::uuid4();
         });
     }
 
