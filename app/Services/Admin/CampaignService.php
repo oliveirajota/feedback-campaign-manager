@@ -133,21 +133,4 @@ class CampaignService
         return CollaboratorModel::where('user_id', '=', $userId)->first();
     }
 
-    public function getCampaignsByCollaborator(CollaboratorModel $collaborator, string $status = 'pending')
-    {
-        $campaigns = CampaignCollaboratorModel::where('collaborator_id', '=', $collaborator->getId())->get();
-        if ($campaigns) {
-            return $campaigns->toArray();
-        }
-
-        return [];
-    }
-
-    public function getUserDashboard(CollaboratorModel $collaborator)
-    {
-        return [
-            'pendign_campaigns' => $this->getCampaignsByCollaborator($collaborator)
-        ];
-    }
-
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Services\Admin\CampaignService;
+use App\Services\User\CampaignService;
 
 class HomeController extends Controller
 {
@@ -16,8 +16,6 @@ class HomeController extends Controller
 
         $dashboard = $campaignService->getUserDashboard($collaborator);
 
-        return view('user.dashboard', [
-            'dashboard' => $dashboard
-        ]);
+        return view('user.dashboard', $dashboard);
     }
 }

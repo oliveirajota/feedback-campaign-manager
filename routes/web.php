@@ -63,6 +63,8 @@ Route::group(
             Route::get('/user/home', 'User\HomeController@index');
             Route::post('/home', 'User\HomeController@index');
 
+            Route::get('/user/campaign/{id}', 'User\CampaignController@view');
+
         });
 });
 
