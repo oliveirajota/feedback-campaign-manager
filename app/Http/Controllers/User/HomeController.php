@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Services\CampaignService;
+use App\Services\Admin\CampaignService;
 
 class HomeController extends Controller
 {

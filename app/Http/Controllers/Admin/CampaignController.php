@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Services\CollaboratorService;
-use App\Services\CompanyService;
-use App\Services\CampaignService;
-use App\Services\QuestionService;
+use App\Services\Admin\CollaboratorService;
+use App\Services\Admin\CompanyService;
+use App\Services\Admin\CampaignService;
+use App\Services\Admin\QuestionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
 

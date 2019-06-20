@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Admin;
 
 use App\Models\Admin\CampaignAnswerModel;
 use App\Models\Admin\CampaignCollaboratorAnswerModel;
