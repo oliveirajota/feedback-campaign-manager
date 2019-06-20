@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-
+use App\Http\Controllers\Controller;
 use App\Services\CampaignService;
 
-class UserHomeController extends Controller
+class HomeController extends Controller
 {
     public function index()
     {

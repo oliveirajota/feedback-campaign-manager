@@ -60,8 +60,8 @@ Route::group(
 
         Route::group(['middleware'=>['isUser','auth']],function(){
 
-            Route::get('/user/home', 'UserHomeController@index');
-            Route::post('/home', 'UserHomeController@index');
+            Route::get('/user/home', 'User\HomeController@index');
+            Route::post('/home', 'User\HomeController@index');
 
         });
 });
