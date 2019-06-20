@@ -38,7 +38,7 @@ class CampaignService
         return $campaignsArray;
     }
 
-    public function getCampaign(int $id)
+    public function getCampaign(string $id)
     {
         return CampaignModel::find($id);
     }
@@ -52,7 +52,7 @@ class CampaignService
         return $campaign->save();
     }
 
-    public function addQuestion(CampaignModel $campaign, int $questionId)
+    public function addQuestion(CampaignModel $campaign, string $questionId)
     {
         $question = QuestionModel::find($questionId);
 
@@ -67,7 +67,7 @@ class CampaignService
         return $campaign->questions()->updateOrCreate($campaignQuestion->toArray());
     }
 
-    public function addCollaborator(CampaignModel $campaign, int $collaboratorId)
+    public function addCollaborator(CampaignModel $campaign, string $collaboratorId)
     {
         $collaborator = CollaboratorModel::find($collaboratorId);
 
@@ -82,7 +82,7 @@ class CampaignService
         return $campaign->collaborators()->updateOrCreate($collaboratorData);
     }
 
-    public function publish(int $campaignId)
+    public function publish(string $campaignId)
     {
         $campaign = $this->getCampaign($campaignId);
 

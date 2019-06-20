@@ -93,10 +93,10 @@ class CampaignController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(string $id)
     {
         $campaignService = new CampaignService();
 
@@ -113,7 +113,7 @@ class CampaignController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -133,7 +133,7 @@ class CampaignController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -144,7 +144,7 @@ class CampaignController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -152,7 +152,7 @@ class CampaignController extends Controller
         //
     }
 
-    public function addQuestions(int $id)
+    public function addQuestions(string $id)
     {
         $campaignService = new CampaignService();
         $campaign = $campaignService->getCampaign($id);
@@ -165,7 +165,7 @@ class CampaignController extends Controller
         ]);
     }
 
-    public function addQuestion(int $id, int $questionId)
+    public function addQuestion(string $id, string $questionId)
     {
         $campaignService = new CampaignService();
         $campaign = $campaignService->getCampaign($id);
@@ -182,7 +182,7 @@ class CampaignController extends Controller
         return redirect('/campaigns/' . $id . '/questions/add')->with(['msg' => $msg]);
     }
 
-    public function addCollaborators(int $id)
+    public function addCollaborators(string $id)
     {
         $campaignService = new CampaignService();
         $campaign = $campaignService->getCampaign($id);
@@ -195,7 +195,7 @@ class CampaignController extends Controller
         ]);
     }
 
-    public function addCollaborator(int $id, int $collaboratorId)
+    public function addCollaborator(string $id, string $collaboratorId)
     {
         $campaignService = new CampaignService();
         $campaign = $campaignService->getCampaign($id);
@@ -212,7 +212,7 @@ class CampaignController extends Controller
         return redirect('/campaigns/' . $id . '/collaborators/add')->with(['msg' => $msg]);
     }
 
-    public function publishView(int $id)
+    public function publishView(string $id)
     {
         $campaignService = new CampaignService();
         $campaign = $campaignService->getCampaign($id);
@@ -227,7 +227,7 @@ class CampaignController extends Controller
         ]);
     }
 
-    public function publishPost(Request $request, int $campaignId)
+    public function publishPost(Request $request, string $campaignId)
     {
         $campaignService = new CampaignService();
         $campaignService->publish($campaignId);

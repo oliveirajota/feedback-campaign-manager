@@ -135,7 +135,7 @@
                                     <tbody>
                                     <tr>
                                         <th style="width:50%">Total Questions:</th>
-                                        <td>{{ $summary['questions'] }}</td>
+                                        <td>{{ $summary['total_questions'] }}</td>
                                     </tr>
                                     <tr>
                                         <th>General Questions</th>

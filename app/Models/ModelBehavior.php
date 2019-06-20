@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-
-use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
 
 trait ModelBehavior
@@ -20,6 +18,16 @@ trait ModelBehavior
         static::creating(function ($model) {
             $model->uuid = Uuid::uuid4();
         });
+    }
+
+    public function getIncrementing()
+    {
+        return false;
+    }
+
+    public function getKeyType()
+    {
+        return 'string';
     }
 
 }

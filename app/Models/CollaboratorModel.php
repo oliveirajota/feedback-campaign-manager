@@ -9,5 +9,5 @@ class CollaboratorModel extends Model
     use ModelBehavior;
 
     protected $table = 'collaborator';
-    protected $fillable = ['owner_id', 'user_id', 'name'];
+    protected $fillable = ['uuid', 'owner_id', 'user_id', 'name'];
 }

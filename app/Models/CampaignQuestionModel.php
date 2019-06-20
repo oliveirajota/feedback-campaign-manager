@@ -9,7 +9,7 @@ class CampaignQuestionModel extends Model
     use ModelBehavior;
 
     protected $table = 'campaign_question';
-    protected $fillable = ['campaign_id', 'question', 'description', 'result', 'type'];
+    protected $fillable = ['uuid', 'campaign_id', 'question', 'description', 'result', 'type'];
 
     public function isCampaignQuestion()
     {

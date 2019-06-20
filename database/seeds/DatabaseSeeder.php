@@ -18,8 +18,10 @@ class DatabaseSeeder extends Seeder
         $user = DB::table('users')->where('email', '=', 'jotaoliveira@gmail.com')->first();
 
         if (!$user) {
-            $adminId = DB::table('users')->insertGetId([
-                'uuid' => $faker->uuid(),
+
+            $adminId = $faker->uuid();
+                DB::table('users')->insert([
+                'id' => $adminId,
                 'name' => 'Jota Oliveira',
                 'email' => 'jotaoliveira@gmail.com',
                 'role' => 'admin',
@@ -32,7 +34,7 @@ class DatabaseSeeder extends Seeder
         for ($i = 1; $i <= 3; $i++) {
 
             DB::table('company')->insert([
-                'uuid' => $faker->uuid(),
+                'id' => $faker->uuid(),
                 'owner_id' => $adminId,
                 'name' => $faker->company,
                 'created_at' => date('Y-m-d H:i:s'),
@@ -45,7 +47,7 @@ class DatabaseSeeder extends Seeder
         // Create Base Questions
         for ($i = 1; $i <= 15; $i++) {
             DB::table('base_question')->insert([
-                'uuid' => $faker->uuid(),
+                'id' => $faker->uuid(),
                 'owner_id' => $adminId,
                 'question' => $faker->sentence(6, true),
                 'description' => $faker->sentence(10, true),
@@ -60,16 +62,18 @@ class DatabaseSeeder extends Seeder
         // Create Users and Collaborators
         for ($i = 1; $i <= 10; $i++) {
 
-            $regularUserId = DB::table('users')->insertGetId([
-                'uuid' => $faker->uuid(),
+            $regularUserId = $faker->uuid();
+            DB::table('users')->insert([
+                'id' => $regularUserId,
                 'name' => $faker->name,
                 'email' => $faker->email,
                 'role' => 'regular',
                 'password' => bcrypt('123456'),
             ]);
 
+
             DB::table('collaborator')->insert([
-                'uuid' => $faker->uuid(),
+                'id' => $faker->uuid(),
                 'name' => $faker->name,
                 'owner_id' => $adminId,
                 'user_id' => $regularUserId,
@@ -83,8 +87,9 @@ class DatabaseSeeder extends Seeder
         // Create Campaigns and Add Questions
         for ($i = 1; $i <= 5; $i++) {
 
-            $campaignId = DB::table('campaign')->insertGetId([
-                'uuid' => $faker->uuid(),
+            $campaignId = $faker->uuid();
+            DB::table('campaign')->insert([
+                'id' => $campaignId,
                 'owner_id' => $adminId,
                 'name' => $faker->sentence(3, true),
                 'description' => $faker->sentence(15, true),
@@ -105,7 +110,7 @@ class DatabaseSeeder extends Seeder
                 $question =  $questions[$questionId];
 
                 DB::table('campaign_question')->insert([
-                    'uuid' => $faker->uuid(),
+                    'id' => $faker->uuid(),
                     'campaign_id' => $campaignId,
                     'question' => $question->question,
                     'description' => $question->description,
@@ -126,7 +131,7 @@ class DatabaseSeeder extends Seeder
                 $collaborator =  $collaborators[$collaboratorId];
 
                 DB::table('campaign_collaborator')->insert([
-                    'uuid' => $faker->uuid(),
+                    'id' => $faker->uuid(),
                     'campaign_id' => $campaignId,
                     'collaborator_id' => $collaborator->id,
                     'status' => 'pending',

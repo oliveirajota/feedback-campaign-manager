@@ -10,7 +10,7 @@ class CampaignCollaboratorModel extends Model
     use ModelBehavior;
 
     protected $table = 'campaign_collaborator';
-    protected $fillable = ['campaign_id', 'collaborator_id', 'status'];
+    protected $fillable = ['uuid', 'campaign_id', 'collaborator_id', 'status'];
 
     public function collaborator()
     {

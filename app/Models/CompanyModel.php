@@ -10,5 +10,5 @@ class CompanyModel extends Model
 
     protected $table = 'company';
 
-    protected $fillable = ['name', 'user_id'];
+    protected $fillable = ['uuid', 'name', 'user_id'];
 }

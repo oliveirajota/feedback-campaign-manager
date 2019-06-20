@@ -88,10 +88,10 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(int $id)
+    public function edit(string $id)
     {
         $questionService = new QuestionService();
         $question = $questionService->getQuestion($id);

@@ -11,7 +11,7 @@ class QuestionService
         return QuestionModel::all()->toArray();
     }
 
-    public function getQuestion(int $id)
+    public function getQuestion(string $id)
     {
         return QuestionModel::find($id)->first();
     }
@@ -22,7 +22,7 @@ class QuestionService
         return $question->save();
     }
 
-    public function update(int $id, array $data)
+    public function update(string $id, array $data)
     {
         $question = QuestionModel::find($id);
         $question->update($data);

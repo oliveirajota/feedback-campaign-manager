@@ -9,5 +9,5 @@ class QuestionModel extends Model
     use ModelBehavior;
 
     protected $table = 'base_question';
-    protected $fillable = ['question', 'description', 'type'];
+    protected $fillable = ['uuid', 'question', 'description', 'type'];
 }

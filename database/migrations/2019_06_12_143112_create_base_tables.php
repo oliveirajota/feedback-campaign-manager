@@ -19,9 +19,9 @@ class CreateBaseTables extends Migration
 
         // Represents a Company
         Schema::create('company', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid')->index();
-            $table->unsignedInteger('owner_id');
+//            $table->increments('id');
+            $table->uuid('id')->primary();
+            $table->uuid('owner_id');
             $table->string('name');
             $table->timestamps();
 
@@ -30,10 +30,10 @@ class CreateBaseTables extends Migration
 
         // Represents a Collaborator
         Schema::create('collaborator', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid')->index();
-            $table->unsignedInteger('owner_id');
-            $table->unsignedInteger('user_id');
+//            $table->increments('id');
+            $table->uuid('id')->primary();
+            $table->uuid('owner_id');
+            $table->uuid('user_id');
             $table->string('name');
             $table->timestamps();
 
@@ -43,9 +43,9 @@ class CreateBaseTables extends Migration
 
         // Represents a Base Question to add on Campaigns
         Schema::create('base_question', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid')->index();
-            $table->unsignedInteger('owner_id');
+//            $table->increments('id');
+            $table->uuid('id')->primary();
+            $table->uuid('owner_id');
             $table->string('question');
             $table->string('description')->nullable();
             $table->enum('type', ['campaign', 'collaborator']);
@@ -56,9 +56,9 @@ class CreateBaseTables extends Migration
 
         // Represents a Feedback Campaign
         Schema::create('campaign', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid')->index();
-            $table->unsignedInteger('owner_id');
+//            $table->increments('id');
+            $table->uuid('id')->primary();
+            $table->uuid('owner_id');
             $table->string('name');
             $table->string('description');
             $table->dateTime('start_at');
@@ -71,10 +71,10 @@ class CreateBaseTables extends Migration
 
         // Represents a Relation of Collaborators in a Campaign
         Schema::create('campaign_collaborator', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid')->index();
-            $table->unsignedInteger('campaign_id');
-            $table->unsignedInteger('collaborator_id');
+//            $table->increments('id');
+            $table->uuid('id')->primary();
+            $table->uuid('campaign_id');
+            $table->uuid('collaborator_id');
             $table->enum('status', ['pending', 'started', 'finished', 'refused']);
             $table->timestamps();
 
@@ -84,9 +84,9 @@ class CreateBaseTables extends Migration
 
         // Represents a Relation of Questions in a Campaign
         Schema::create('campaign_question', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid')->index();
-            $table->unsignedInteger('campaign_id');
+//            $table->increments('id');
+            $table->uuid('id')->primary();
+            $table->uuid('campaign_id');
             $table->string('question');
             $table->string('description')->nullable();
             $table->enum('type', ['campaign', 'collaborator']);
@@ -97,11 +97,11 @@ class CreateBaseTables extends Migration
 
         // Represents an Answer for a Campaign Question
         Schema::create('campaign_answer', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid')->index();
-            $table->unsignedInteger('campaign_id');
-            $table->unsignedInteger('collaborator_id');
-            $table->unsignedInteger('campaign_question_id');
+//            $table->increments('id');
+            $table->uuid('id')->primary();
+            $table->uuid('campaign_id');
+            $table->uuid('collaborator_id');
+            $table->uuid('campaign_question_id');
             $table->boolean('private')->nullable();
             $table->unsignedInteger('result')->nullable();
             $table->timestamps();
@@ -113,12 +113,12 @@ class CreateBaseTables extends Migration
 
         // Represents an Answer for a Collaborator Question
         Schema::create('campaign_collaborator_answer', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid')->index();
-            $table->unsignedInteger('campaign_id');
-            $table->unsignedInteger('collaborator_id');
-            $table->unsignedInteger('subject_id');
-            $table->unsignedInteger('campaign_question_id');
+//            $table->increments('id');
+            $table->uuid('id')->primary();
+            $table->uuid('campaign_id');
+            $table->uuid('collaborator_id');
+            $table->uuid('subject_id');
+            $table->uuid('campaign_question_id');
             $table->boolean('private')->nullable();
             $table->unsignedInteger('result')->nullable();
             $table->timestamps();
