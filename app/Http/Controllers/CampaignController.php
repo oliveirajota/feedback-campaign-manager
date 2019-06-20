@@ -32,7 +32,7 @@ class CampaignController extends Controller
     public function index()
     {
         $campaignService = new CampaignService();
-        return view('campaign.index', [
+        return view('admin.campaign.index', [
             'campaigns' => $campaignService->getCampaignsWithCollaborators()
         ]);
     }
@@ -55,7 +55,7 @@ class CampaignController extends Controller
                 ]
             ]);
         }
-        return view('campaign.create', [
+        return view('admin.campaign.create', [
             'companies' => $companyService->getCompaniesSelector()
         ]);
     }
@@ -82,7 +82,7 @@ class CampaignController extends Controller
         $campaignService = new CampaignService();
         $campaignService->createCampaign($data, $user);
 
-        return redirect(route('campaigns.index'))->with([
+        return redirect(route('admin.campaigns.index'))->with([
             'msg' => [
                 'type' => 'success',
                 'txt' => 'Campaign Created Successfully'
@@ -102,7 +102,7 @@ class CampaignController extends Controller
 
         $campaign = $campaignService->getCampaign($id);
 
-        return view('campaign.show', [
+        return view('admin.campaign.show', [
             'campaign' => $campaign->toArray(),
             'questions' => $campaign->questions()->get()->toArray(),
             'collaborators' => $campaign->collaborators()->get()->toArray(),
@@ -123,7 +123,7 @@ class CampaignController extends Controller
 
         $companyService = new CompanyService();
 
-        return view('campaign.edit', [
+        return view('admin.campaign.edit', [
             'campaign' => $campaign,
             'companies' => $companyService->getCompaniesSelector()
         ]);
@@ -159,7 +159,7 @@ class CampaignController extends Controller
 
         $questionService = new QuestionService();
 
-        return view('campaign.questions', [
+        return view('admin.campaign.questions', [
             'campaign' => $campaign->toArray(),
             'questions' => $questionService->getQuestions()
         ]);
@@ -189,7 +189,7 @@ class CampaignController extends Controller
 
         $collaboratorService = new CollaboratorService();
 
-        return view('campaign.collaborators', [
+        return view('admin.campaign.collaborators', [
             'campaign' => $campaign->toArray(),
             'collaborators' => $collaboratorService->getCollaborators()
         ]);
@@ -217,7 +217,7 @@ class CampaignController extends Controller
         $campaignService = new CampaignService();
         $campaign = $campaignService->getCampaign($id);
 
-        return view('campaign.publish', [
+        return view('admin.campaign.publish', [
             'campaign' => $campaign->toArray(),
             'questions' => $campaign->questions()->get()->toArray(),
             'campaignQuestions' => $campaign->campaignQuestions()->get()->toArray(),

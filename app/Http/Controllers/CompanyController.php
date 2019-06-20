@@ -26,7 +26,7 @@ class CompanyController extends Controller
     public function index()
     {
         $companyService = new CompanyService();
-        return view('company.index', [
+        return view('admin.company.index', [
             'companies' => $companyService->getCompanies()
         ]);
     }
@@ -62,7 +62,7 @@ class CompanyController extends Controller
         }
 
         $companyService->createCompany($data, $user);
-        return redirect(route('companies.index'))->with([
+        return redirect(route('admin.companies.index'))->with([
             'msg' => [
                 'type' => 'success',
                 'txt' => 'Company Created Successfully'

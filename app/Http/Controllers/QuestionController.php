@@ -27,7 +27,7 @@ class QuestionController extends Controller
     public function index()
     {
         $questionService = new QuestionService();
-        return view('question.index', [
+        return view('admin.question.index', [
             'questions' => $questionService->getQuestions()
         ]);
     }
@@ -39,7 +39,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('question.create', [
+        return view('admin.question.create', [
             'questionType' => [
                 'collaborator' => "Question related to a Collaborator",
                 'campaign' => "Question related to a Feedback Campaign",
@@ -66,7 +66,7 @@ class QuestionController extends Controller
 
         $questionService = new QuestionService();
         $questionService->createQuestion($data);
-        return redirect(route('questions.index'))->with([
+        return redirect(route('admin.questions.index'))->with([
             'msg' => [
                 'type' => 'success',
                 'txt' => 'Question Created Successfully'
@@ -96,7 +96,7 @@ class QuestionController extends Controller
         $questionService = new QuestionService();
         $question = $questionService->getQuestion($id);
 
-        return view('question.edit', [
+        return view('admin.question.edit', [
             'question' => $question,
             'questionType' => [
                 'collaborator' => "Question related to a Collaborator",
@@ -126,7 +126,7 @@ class QuestionController extends Controller
         $questionService = new QuestionService();
         $questionService->update($id, $data);
 
-        return redirect(route('questions.index'))->with([
+        return redirect(route('admin.questions.index'))->with([
             'msg' => [
                 'type' => 'success',
                 'txt' => 'Question Updated Successfully'

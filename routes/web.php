@@ -23,11 +23,13 @@ Route::group(
 
         Auth::routes();
 
-        Route::get('/home', 'HomeController@index')->name('home');
-        Route::post('/home', 'HomeController@index');
 
 
-        Route::group(['middleware'=>'auth'],function(){
+        Route::group(['middleware'=>['isAdmin','auth']],function(){
+
+            Route::get('/home', 'HomeController@index')->name('home');
+            Route::post('/home', 'HomeController@index');
+
 
             Route::group(['prefix'=>'ajax'],function(){
             });
@@ -53,6 +55,13 @@ Route::group(
             // Questions
             Route::resource('questions', 'QuestionController');
 
+
+        });
+
+        Route::group(['middleware'=>['isUser','auth']],function(){
+
+            Route::get('/user/home', 'HomeController@index');
+            Route::post('/home', 'HomeController@index');
 
         });
 });
