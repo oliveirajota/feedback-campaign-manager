@@ -3,7 +3,7 @@
 namespace App\Services;
 
 
-use App\Models\CollaboratorModel;
+use App\Models\Admin\CollaboratorModel;
 
 class CollaboratorService
 {

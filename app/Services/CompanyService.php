@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\CompanyModel;
+use App\Models\Admin\CompanyModel;
 use App\User;
 
 class CompanyService

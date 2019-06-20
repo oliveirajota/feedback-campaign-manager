@@ -2,13 +2,13 @@
 
 namespace App\Services;
 
-use App\Models\CampaignAnswerModel;
-use App\Models\CampaignCollaboratorAnswerModel;
-use App\Models\CampaignCollaboratorModel;
-use App\Models\CampaignModel;
-use App\Models\CampaignQuestionModel;
-use App\Models\CollaboratorModel;
-use App\Models\QuestionModel;
+use App\Models\Admin\CampaignAnswerModel;
+use App\Models\Admin\CampaignCollaboratorAnswerModel;
+use App\Models\Admin\CampaignCollaboratorModel;
+use App\Models\Admin\CampaignModel;
+use App\Models\Admin\CampaignQuestionModel;
+use App\Models\Admin\CollaboratorModel;
+use App\Models\Admin\QuestionModel;
 use App\User;
 use Carbon\Carbon;
 
@@ -125,6 +125,29 @@ class CampaignService
                 $campaignCollaboratorAnswer->save();
             }
         }
+    }
+
+    public function getCollaboratorByUser(User $user)
+    {
+        $userId = $user->getId();
+        return CollaboratorModel::where('user_id', '=', $userId)->first();
+    }
+
+    public function getCampaignsByCollaborator(CollaboratorModel $collaborator, string $status = 'pending')
+    {
+        $campaigns = CampaignCollaboratorModel::where('collaborator_id', '=', $collaborator->getId())->get();
+        if ($campaigns) {
+            return $campaigns->toArray();
+        }
+
+        return [];
+    }
+
+    public function getUserDashboard(CollaboratorModel $collaborator)
+    {
+        return [
+            'pendign_campaigns' => $this->getCampaignsByCollaborator($collaborator)
+        ];
     }
 
 }

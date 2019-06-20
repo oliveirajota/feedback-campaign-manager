@@ -35,33 +35,33 @@ Route::group(
             });
 
             // Campaigns
-            Route::resource('campaigns', 'CampaignController');
-            Route::get('/campaigns/{id}/questions/add', 'CampaignController@addQuestions');
-            Route::get('/campaigns/{id}/questions/add/{questionId}', 'CampaignController@addQuestion');
-            Route::post('/campaigns/{id}/questions/add', 'CampaignController@addQuestionsPost');
+            Route::resource('campaigns', 'Admin\CampaignController');
+            Route::get('/campaigns/{id}/questions/add', 'Admin\CampaignController@addQuestions');
+            Route::get('/campaigns/{id}/questions/add/{questionId}', 'Admin\CampaignController@addQuestion');
+            Route::post('/campaigns/{id}/questions/add', 'Admin\CampaignController@addQuestionsPost');
 
-            Route::get('/campaigns/{id}/collaborators/add', 'CampaignController@addCollaborators');
-            Route::get('/campaigns/{id}/collaborators/add/{collaboratorId}', 'CampaignController@addCollaborator');
-            Route::post('/campaigns/{id}/collaborators/add', 'CampaignController@addCollaboratorsPost');
+            Route::get('/campaigns/{id}/collaborators/add', 'Admin\CampaignController@addCollaborators');
+            Route::get('/campaigns/{id}/collaborators/add/{collaboratorId}', 'Admin\CampaignController@addCollaborator');
+            Route::post('/campaigns/{id}/collaborators/add', 'Admin\CampaignController@addCollaboratorsPost');
 
-            Route::get('/campaigns/{id}/publish', 'CampaignController@publishView');
-            Route::post('/campaigns/{id}/publish', 'CampaignController@publishPost');
+            Route::get('/campaigns/{id}/publish', 'Admin\CampaignController@publishView');
+            Route::post('/campaigns/{id}/publish', 'Admin\CampaignController@publishPost');
 
 
 
             // Companies
-            Route::resource('companies', 'CompanyController');
+            Route::resource('companies', 'Admin\CompanyController');
 
             // Questions
-            Route::resource('questions', 'QuestionController');
+            Route::resource('questions', 'Admin\QuestionController');
 
 
         });
 
         Route::group(['middleware'=>['isUser','auth']],function(){
 
-            Route::get('/user/home', 'HomeController@index');
-            Route::post('/home', 'HomeController@index');
+            Route::get('/user/home', 'UserHomeController@index');
+            Route::post('/home', 'UserHomeController@index');
 
         });
 });

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\QuestionModel;
+use App\Models\Admin\QuestionModel;
 
 class QuestionService
 {
