@@ -1,0 +1,29 @@
+<?php
+/*************************************************************************
+ Generated via "php artisan localization:missing" at 2019/06/20 12:37:27 
+*************************************************************************/
+
+return array (
+  //==================================== Translations ====================================//
+  'Confirm Password' => 'TODO: Confirm Password',
+  'E-Mail Address' => 'TODO: E-Mail Address',
+  'Forgot Your Password?' => 'TODO: Forgot Your Password?',
+  'Login' => 'TODO: Login',
+  'Name' => 'TODO: Name',
+  'Password' => 'TODO: Password',
+  'Register' => 'TODO: Register',
+  'Remember Me' => 'TODO: Remember Me',
+  'Reset Password' => 'TODO: Reset Password',
+  'Send Password Reset Link' => 'TODO: Send Password Reset Link',
+  'click here to request another' => 'TODO: click here to request another',
+  //================================== Obsolete strings ==================================//
+  'LLH:obsolete' => 
+  array (
+    'If you did not receive the email' => 'TODO: If you did not receive the email',
+    'Verify Your Email Address' => 'TODO: Verify Your Email Address',
+    'verify_email_address' => 'TODO: verify_email_address',
+    'verify_email_before_proceeding' => 'TODO: verify_email_before_proceeding',
+    'verify_email_fresh_verification_was_sent' => 'TODO: verify_email_fresh_verification_was_sent',
+    'verify_email_if_you_didnt_received' => 'TODO: verify_email_if_you_didnt_received',
+  ),
+);

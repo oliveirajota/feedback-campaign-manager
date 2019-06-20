@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class CampaignCollaboratorAnswerModel extends Model
+{
+    protected $table = 'campaign_collaborator_answer';
+    protected $fillable = ['campaign_id', 'collaborator_id', 'subject_id', 'campaign_question_id', 'private', 'result'];
+}

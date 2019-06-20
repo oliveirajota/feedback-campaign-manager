@@ -1,0 +1,23 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+@import '~font-awesome/scss/font-awesome';
+@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.css";
+
+// Gentelella
+//@import '~gentelella/vendors/bootstrap/dist/css/bootstrap';
+//@import '~gentelella/vendors/font-awesome/scss/font-awesome';
+//@import '~gentelella/vendors/animate.css/animate';
+//@import '~gentelella/vendors/pnotify/dist/pnotify.css';
+@import '~gentelella/vendors/nprogress/nprogress';
+@import '~gentelella/vendors/iCheck/skins/flat/green';
+@import '~gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min';
+@import '~gentelella/vendors/jqvmap/dist/jqvmap';
+@import '~gentelella/src/scss/custom';
+
