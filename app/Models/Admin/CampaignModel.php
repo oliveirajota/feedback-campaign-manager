@@ -4,6 +4,7 @@ namespace App\Models\Admin;
 
 use App\Models\ModelBehavior;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class CampaignModel extends Model
 {
@@ -50,15 +51,15 @@ class CampaignModel extends Model
         ];
     }
 
-    public function toArray()
+    public function getFormattedFields()
     {
-        $data = parent::toArray();
-        $data['start_at_f'] = date('d/m/Y', strtotime($data['start_at']));
-        $data['expire_at_f'] = date('d/m/Y', strtotime($data['expire_at']));
-        $data['created_at_f'] = date('d/m/Y', strtotime($data['created_at']));
-        $data['updated_at_f'] = date('d/m/Y', strtotime($data['updated_at']));
+        $array = $this->toArray();
+        $data['start_at_f'] = date('d/m/Y', strtotime($array['start_at']));
+        $data['expire_at_f'] = date('d/m/Y', strtotime($array['expire_at']));
+        $data['created_at_f'] = date('d/m/Y', strtotime($array['created_at']));
+        $data['updated_at_f'] = date('d/m/Y', strtotime($array['updated_at']));
         $data['is_publishable'] = $this->isPublishable();
-        return  $data;
+        return $data;
     }
 
     public function proceed()
@@ -71,5 +72,25 @@ class CampaignModel extends Model
     {
         return $this->status === 'planning';
     }
+
+    public function getCollaboratorsResults()
+    {
+        return $this
+            ->select([
+//                'campaign_collaborator_answer.subject_id',
+                'collaborator.*',
+                DB::raw('CAST(SUM(campaign_collaborator_answer.result) as UNSIGNED) AS total'),
+                DB::raw('COUNT(subject_id) as cnt'),
+                DB::raw('CAST((SUM(campaign_collaborator_answer.result) / COUNT(subject_id)) AS DECIMAL(5,2)) as avg'),
+//                'campaign.*'
+            ])
+            ->from('campaign_collaborator_answer')
+            ->join('collaborator', 'campaign_collaborator_answer.subject_id', '=', 'collaborator.id')
+//            ->join('campaign', 'campaign_collaborator_answer.campaign_id', '=', 'campaign.id')
+            ->where('campaign_collaborator_answer.campaign_id', '=', $this->id)
+            ->groupBy('campaign_collaborator_answer.subject_id')
+            ->get();
+    }
+
 
 }

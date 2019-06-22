@@ -240,4 +240,21 @@ class CampaignController extends Controller
 
         return redirect('/campaigns/' . $campaignId )->with(['msg' => $msg]);
     }
+
+    public function seeResults(string $id)
+    {
+        $campaignService = new CampaignService();
+        $campaignData = $campaignService->getCampaignWithResults($id);
+
+//        dd($campaignData['collaborators']);
+
+        return view('admin.campaign.results', [
+            'campaign' => $campaignData['campaign'],
+//            'results' => $campaign->getCollaboratorsResults()->toArray(),
+//            'campaignQuestions' => $campaign->campaignQuestions()->get()->toArray(),
+//            'collaboratorQuestions' => $campaign->collaboratorQuestions()->get()->toArray(),
+            'collaborators' => $campaignData['collaborators'],
+//            'summary' => $campaign->getSummary()
+        ]);
+    }
 }

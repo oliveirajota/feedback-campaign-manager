@@ -47,11 +47,11 @@
                                 <td>
                                     {{ $campaign['name'] }}
                                     <br>
-                                    <small>Created {{ $campaign['created_at_f'] }}</small>
+                                    <small>Created {{ $campaign['formatted']['created_at_f'] }}</small>
                                     <br>
-                                    <small>Start At {{ $campaign['start_at_f'] }}</small>
+                                    <small>Start At {{ $campaign['formatted']['start_at_f'] }}</small>
                                     <br>
-                                    <small>Ends At {{ $campaign['expire_at_f'] }}</small>
+                                    <small>Ends At {{ $campaign['formatted']['expire_at_f'] }}</small>
                                 </td>
                                 <td>
                                     <ul class="list-inline">
@@ -70,6 +70,7 @@
                                 </td>
                                 <td><span class="label label-default">{{ $campaign['status'] }}</span></td>
                                 <td class="text-right">
+                                    <a href="/campaigns/{{ $campaign['id'] }}/results" class="btn btn-primary btn-xs"><i class="fa fa-exclamation"></i> See Results</a>
                                     <a href="{{ route('campaigns.show', $campaign['id']) }}" class="btn btn-warning btn-xs"><i class="fa fa-folder"></i> View </a>
                                     <a href="/campaigns/{{ $campaign['id'] }}/questions/add" class="btn btn-primary btn-xs"><i class="fa fa-question"></i> Add Questions </a>
                                     <a href="/campaigns/{{ $campaign['id'] }}/collaborators/add" class="btn btn-success btn-xs"><i class="fa fa-user"></i> Add Collaborators </a>

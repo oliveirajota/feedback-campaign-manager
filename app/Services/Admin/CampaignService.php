@@ -32,10 +32,40 @@ class CampaignService
 
         foreach ($campaigns as $campaign) {
             $campaignsArray[$campaign->getId()] = $campaign->toArray();
+            $campaignsArray[$campaign->getId()]['formatted'] = $campaign->getFormattedFields();
             $campaignsArray[$campaign->getId()]['collaborators'] = $campaign->collaborators()->get()->toArray();
         }
 
         return $campaignsArray;
+    }
+
+    public function getCampaignWithResults(string $campaignId)
+    {
+        $campaign = $this->getCampaign($campaignId);
+        $campaignArray = [];
+
+        $campaignArray['campaign'] = $campaign->toArray();
+        $collaborators = $campaign->collaborators()->get()->toArray();
+        $collaboratorResults = $campaign->getCollaboratorsResults()->toArray();
+
+        $collaboratorResultsData = [];
+
+
+        foreach ($collaboratorResults as $collaboratorResult) {
+            $collaboratorResultsData[$collaboratorResult['id']] = $collaboratorResult;
+        }
+
+//        dd($collaboratorResultsData);
+        $collaboratorsData = [];
+
+        foreach ($collaborators as $collaborator) {
+            $collaboratorsData[$collaborator['collaborator_id']]['collaborator'] = $collaborator;
+            $collaboratorsData[$collaborator['collaborator_id']]['results'] = $collaboratorResultsData[$collaborator['collaborator_id']];
+        }
+
+        $campaignArray['collaborators'] = $collaboratorsData;
+
+        return $campaignArray;
     }
 
     public function getCampaign(string $id)
