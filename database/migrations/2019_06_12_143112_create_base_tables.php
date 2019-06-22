@@ -102,6 +102,7 @@ class CreateBaseTables extends Migration
             $table->uuid('campaign_id');
             $table->uuid('collaborator_id');
             $table->uuid('campaign_question_id');
+            $table->text('comment')->nullable();
             $table->boolean('private')->nullable();
             $table->unsignedInteger('result')->nullable();
             $table->timestamps();
@@ -119,6 +120,7 @@ class CreateBaseTables extends Migration
             $table->uuid('collaborator_id');
             $table->uuid('subject_id');
             $table->uuid('campaign_question_id');
+            $table->text('comment')->nullable();
             $table->boolean('private')->nullable();
             $table->unsignedInteger('result')->nullable();
             $table->timestamps();

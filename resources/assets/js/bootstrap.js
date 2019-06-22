@@ -23,6 +23,7 @@ try {
     require('gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar');
     require('gentelella/vendors/iCheck/icheck');
     require('gentelella/vendors/skycons/skycons');
+    require('gentelella/vendors/ion.rangeSlider/js/ion.rangeSlider');
     // require('gentelella/vendors/DateJS/build/date');
     // require('gentelella/vendors/moment/moment');
     // require('gentelella/vendors/bootstrap-daterangepicker/daterangepicker');

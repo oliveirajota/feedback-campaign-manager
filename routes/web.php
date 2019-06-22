@@ -27,8 +27,8 @@ Route::group(
 
         Route::group(['middleware'=>['isAdmin','auth']],function(){
 
-            Route::get('/home', 'HomeController@index')->name('home');
-            Route::post('/home', 'HomeController@index');
+            Route::get('/home', 'Admin\HomeController@index')->name('home');
+            Route::post('/home', 'Admin\HomeController@index');
 
 
             Route::group(['prefix'=>'ajax'],function(){
@@ -64,6 +64,11 @@ Route::group(
             Route::post('/home', 'User\HomeController@index');
 
             Route::get('/user/campaign/{id}', 'User\CampaignController@view');
+            Route::get('/user/campaign/{id}/answer', 'User\CampaignController@viewQuestions');
+            Route::post('/user/campaign/{id}/answer', 'User\CampaignController@saveAnswers');
+
+            Route::get('/user/campaign/{campaignId}/collaborator/{collaboratorId}', 'User\CampaignController@viewCollaboratorQuestions');
+            Route::post('/user/campaign/{campaignId}/collaborator/{collaboratorId}', 'User\CampaignController@saveCollaboratorAnswers');
 
         });
 });
