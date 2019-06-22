@@ -23,3 +23,8 @@
 @import '~gentelella/vendors/ion.rangeSlider/css/ion.rangeSlider.skinHTML5.css';
 @import '~gentelella/src/scss/custom';
 
+
+// Override profile break on 3rd elemnt
+.profile_details:nth-child(3n){
+  clear:none !important;
+}

@@ -49,6 +49,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <a href="/user/campaign/{{ $campaign['id'] }}" class="btn btn-primary">Back</a>
                                     <button type="submit" class="btn btn-success pull-right">Save Answers</button>
                                 </div>
                             </div>

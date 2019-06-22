@@ -28,7 +28,7 @@
 
                 <div class="x_content">
                     @if ($questions)
-                        <form data-parsley-validate class="form-horizontal form-label-left" action="/user/campaign/{{ $campaign['id'] }}/collaborator/{{ $subjectId }}" method="post">
+                        <form data-parsley-validate class="form-horizontal form-label-left" action="/user/campaign/{{ $campaign['id'] }}/collaborator/{{ $subjectId }}/answer" method="post">
                             {{ Form::token() }}
                             {{ Form::hidden('campaign_id', $campaign['id']) }}
                         @foreach ($questions as $key => $question)
@@ -49,6 +49,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <a href="/user/campaign/{{ $campaign['id'] }}" class="btn btn-primary">Back </a>
                                     <button type="submit" class="btn btn-success pull-right">Save Answers</button>
                                 </div>
                             </div>

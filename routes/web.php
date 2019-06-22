@@ -67,8 +67,8 @@ Route::group(
             Route::get('/user/campaign/{id}/answer', 'User\CampaignController@viewQuestions');
             Route::post('/user/campaign/{id}/answer', 'User\CampaignController@saveAnswers');
 
-            Route::get('/user/campaign/{campaignId}/collaborator/{collaboratorId}', 'User\CampaignController@viewCollaboratorQuestions');
-            Route::post('/user/campaign/{campaignId}/collaborator/{collaboratorId}', 'User\CampaignController@saveCollaboratorAnswers');
+            Route::get('/user/campaign/{campaignId}/collaborator/{collaboratorId}/answer', 'User\CampaignController@viewCollaboratorQuestions');
+            Route::post('/user/campaign/{campaignId}/collaborator/{collaboratorId}/answer', 'User\CampaignController@saveCollaboratorAnswers');
 
         });
 });
