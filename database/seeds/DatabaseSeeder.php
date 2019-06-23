@@ -84,6 +84,8 @@ class DatabaseSeeder extends Seeder
 
         $collaborators = DB::table('collaborator')->get()->toArray();
 
+        $campaignIds = [];
+
         // Create Campaigns and Add Questions
         for ($i = 1; $i <= 5; $i++) {
 
@@ -141,7 +143,39 @@ class DatabaseSeeder extends Seeder
 
                 unset($collaboratorsIds[$collaboratorId]);
             }
+
+            $campaignIds[] = $campaignId;
         }
+
+        // Publish Campaigns
+        $campaignService = new \App\Services\Admin\CampaignService();
+        foreach ($campaignIds as $campaignId) {
+            $campaignService->publish($campaignId);
+        }
+
+        // Update Answers
+        $campaignAnswers = DB::table('campaign_answer')->get();
+        foreach ($campaignAnswers as $campaignAnswer) {
+            DB::table('campaign_answer')
+                ->where('id', $campaignAnswer->id)
+                ->update([
+                    'result' => rand(0, 6),
+                    'comment' => $faker->sentence(10, true)
+                ]
+            );
+        }
+
+        $collaboratorAnswers = DB::table('campaign_collaborator_answer')->get();
+        foreach ($collaboratorAnswers as $collaboratorAnswer) {
+            DB::table('campaign_collaborator_answer')
+                ->where('id', $collaboratorAnswer->id)
+                ->update([
+                    'result' => rand(0, 6),
+                    'comment' => $faker->sentence(10, true)
+                ]
+            );
+        }
+
     }
 
 }
