@@ -77,20 +77,34 @@ class CampaignModel extends Model
     {
         return $this
             ->select([
-//                'campaign_collaborator_answer.subject_id',
                 'collaborator.*',
                 DB::raw('CAST(SUM(campaign_collaborator_answer.result) as UNSIGNED) AS total'),
                 DB::raw('COUNT(subject_id) as cnt'),
                 DB::raw('CAST((SUM(campaign_collaborator_answer.result) / COUNT(subject_id)) AS DECIMAL(5,2)) as avg'),
-//                'campaign.*'
             ])
             ->from('campaign_collaborator_answer')
             ->join('collaborator', 'campaign_collaborator_answer.subject_id', '=', 'collaborator.id')
-//            ->join('campaign', 'campaign_collaborator_answer.campaign_id', '=', 'campaign.id')
             ->where('campaign_collaborator_answer.campaign_id', '=', $this->id)
             ->groupBy('campaign_collaborator_answer.subject_id')
             ->get();
     }
+
+    public function getCampaignResults()
+    {
+        return $this
+            ->select([
+                'campaign_question.*',
+                DB::raw('CAST(SUM(campaign_answer.result) as UNSIGNED) AS total'),
+                DB::raw('COUNT(collaborator_id) as cnt'),
+                DB::raw('CAST((SUM(campaign_answer.result) / COUNT(collaborator_id)) AS DECIMAL(5,2)) as avg'),
+            ])
+            ->from('campaign_answer')
+            ->join('campaign_question', 'campaign_answer.campaign_question_id', '=', 'campaign_question.id')
+            ->where('campaign_answer.campaign_id', '=', $this->id)
+            ->groupBy('campaign_answer.campaign_question_id')
+            ->get();
+    }
+
 
 
 }

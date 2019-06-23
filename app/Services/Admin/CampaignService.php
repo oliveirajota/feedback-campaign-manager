@@ -50,12 +50,10 @@ class CampaignService
 
         $collaboratorResultsData = [];
 
-
         foreach ($collaboratorResults as $collaboratorResult) {
             $collaboratorResultsData[$collaboratorResult['id']] = $collaboratorResult;
         }
 
-//        dd($collaboratorResultsData);
         $collaboratorsData = [];
 
         foreach ($collaborators as $collaborator) {
@@ -64,6 +62,7 @@ class CampaignService
         }
 
         $campaignArray['collaborators'] = $collaboratorsData;
+        $campaignArray['questions'] = $campaign->getCampaignResults()->toArray();
 
         return $campaignArray;
     }

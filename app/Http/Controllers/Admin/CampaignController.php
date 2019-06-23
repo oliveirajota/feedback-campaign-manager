@@ -246,10 +246,12 @@ class CampaignController extends Controller
         $campaignService = new CampaignService();
         $campaignData = $campaignService->getCampaignWithResults($id);
 
-//        dd($campaignData['collaborators']);
+//        dd($campaignData);
+
 
         return view('admin.campaign.results', [
             'campaign' => $campaignData['campaign'],
+            'questions' => $campaignData['questions'],
 //            'results' => $campaign->getCollaboratorsResults()->toArray(),
 //            'campaignQuestions' => $campaign->campaignQuestions()->get()->toArray(),
 //            'collaboratorQuestions' => $campaign->collaboratorQuestions()->get()->toArray(),
