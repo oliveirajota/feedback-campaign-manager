@@ -23,7 +23,7 @@
 
                 <div class="x_title">
                     <h2>Campaign Results</h2>
-                    <a class="btn btn-success pull-right" href="/campaign/{{ $campaign['id'] }}/answers">
+                    <a class="btn btn-success pull-right" href="/campaigns/{{ $campaign['id'] }}/answers">
                         <i class="fa fa-check"></i> View Campaign Answers
                     </a>
                     <div class="clearfix"></div>

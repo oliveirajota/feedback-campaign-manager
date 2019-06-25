@@ -105,6 +105,26 @@ class CampaignModel extends Model
             ->get();
     }
 
+    public function getCampaignQuestionsChartData()
+    {
+        $results =  $this
+            ->select([
+                'campaign_answer.result',
+                DB::raw('COUNT(campaign_answer.id) as total')
+            ])
+            ->from('campaign_answer')
+            ->where('campaign_answer.campaign_id', '=', $this->id)
+            ->groupBy('campaign_answer.result')
+            ->get();
+
+        $data = [];
+        foreach ($results as $result) {
+            $data[$result->result] = $result->total;
+        }
+
+        return $data;
+    }
+
 
 
 }

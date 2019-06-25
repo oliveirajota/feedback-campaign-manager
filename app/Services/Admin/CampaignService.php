@@ -63,9 +63,12 @@ class CampaignService
 
         $campaignArray['collaborators'] = $collaboratorsData;
         $campaignArray['questions'] = $campaign->getCampaignResults()->toArray();
+        $campaignArray['campaign_questions_chart'] = $campaign->getCampaignQuestionsChartData();
 
         return $campaignArray;
     }
+
+
 
     public function getCampaign(string $id)
     {

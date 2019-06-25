@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
             DB::table('base_question')->insert([
                 'id' => $faker->uuid(),
                 'owner_id' => $adminId,
-                'question' => $faker->sentence(6, true),
+                'question' => str_replace('.', '?', $faker->sentence(6, true)),
                 'description' => $faker->sentence(10, true),
                 'type' => $questionType[array_rand($questionType, 1)],
                 'created_at' => date('Y-m-d H:i:s'),

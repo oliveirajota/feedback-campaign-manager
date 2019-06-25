@@ -241,7 +241,7 @@ class CampaignController extends Controller
         return redirect('/campaigns/' . $campaignId )->with(['msg' => $msg]);
     }
 
-    public function seeResults(string $id)
+    public function viewResults(string $id)
     {
         $campaignService = new CampaignService();
         $campaignData = $campaignService->getCampaignWithResults($id);
@@ -250,6 +250,21 @@ class CampaignController extends Controller
             'campaign' => $campaignData['campaign'],
             'questions' => $campaignData['questions'],
             'collaborators' => $campaignData['collaborators']
+        ]);
+    }
+
+    public function viewCampaignAnswers(string $id)
+    {
+        $campaignService = new CampaignService();
+        $campaignData = $campaignService->getCampaignWithResults($id);
+
+//        dd(($campaignData));
+
+        return view('admin.campaign.answers', [
+            'campaign' => $campaignData['campaign'],
+            'questions' => $campaignData['questions'],
+            'collaborators' => $campaignData['collaborators'],
+            'campaignQuestionsChart' => $campaignData['campaign_questions_chart'],
         ]);
     }
 }

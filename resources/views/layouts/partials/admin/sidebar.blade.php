@@ -1,3 +1,7 @@
+<?php
+$user = Auth::user();
+?>
+
 @section('sidebar')
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
@@ -13,7 +17,7 @@
             </div>
             <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2>{{ $user->name }}</h2>
             </div>
         </div>
 

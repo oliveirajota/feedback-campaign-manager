@@ -47,7 +47,8 @@ Route::group(
             Route::get('/campaigns/{id}/publish', 'Admin\CampaignController@publishView');
             Route::post('/campaigns/{id}/publish', 'Admin\CampaignController@publishPost');
 
-            Route::get('/campaigns/{id}/results', 'Admin\CampaignController@seeResults');
+            Route::get('/campaigns/{id}/results', 'Admin\CampaignController@viewResults');
+            Route::get('/campaigns/{id}/answers', 'Admin\CampaignController@viewCampaignAnswers');
 
 
 
