@@ -65,6 +65,24 @@ class CampaignService
         $campaignArray['questions'] = $campaign->getCampaignResults()->toArray();
         $campaignArray['campaign_questions_chart'] = $campaign->getCampaignQuestionsChartData();
 
+        // answers
+        $campaignArray['answers'] = [];
+        $questions = $campaign->questions()->get();
+        foreach ($questions as $question)
+        {
+            $answersData = [];
+
+            $answers = $question->answers()->get();
+            foreach ($answers as $answer) {
+                $answersData[$answer->getId()] = $answer->toArrayWithCollaborator();
+            }
+
+            $campaignArray['answers'][$question->getId()] = [
+                'question' => $question->toArray(),
+                'answers' =>  $answersData
+            ];
+        }
+
         return $campaignArray;
     }
 

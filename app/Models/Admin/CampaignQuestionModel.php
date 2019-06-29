@@ -26,4 +26,9 @@ class CampaignQuestionModel extends Model
     {
         return $this->type;
     }
+
+    public function answers()
+    {
+        return $this->hasMany(CampaignAnswerModel::class, 'campaign_question_id', 'id');
+    }
 }

@@ -258,13 +258,22 @@ class CampaignController extends Controller
         $campaignService = new CampaignService();
         $campaignData = $campaignService->getCampaignWithResults($id);
 
-//        dd(($campaignData));
+        $results = [
+            "Inaceitável","Péssimo","Ruim","Regular","Bom","Ótimo","Excelente"
+        ];
 
+        $resultsColor = [
+            "danger","danger","warning","default","info","primary","success"
+        ];
+        
         return view('admin.campaign.answers', [
             'campaign' => $campaignData['campaign'],
-            'questions' => $campaignData['questions'],
+//            'questions' => $campaignData['questions'],
             'collaborators' => $campaignData['collaborators'],
             'campaignQuestionsChart' => $campaignData['campaign_questions_chart'],
+            'questions' => $campaignData['answers'],
+            'results' => $results,
+            'resultsColor' => $resultsColor
         ]);
     }
 }

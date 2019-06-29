@@ -124,7 +124,4 @@ class CampaignModel extends Model
 
         return $data;
     }
-
-
-
 }
