@@ -64,7 +64,10 @@ class DatabaseSeeder extends Seeder
         // Create Users and Collaborators
         for ($i = 1; $i <= 10; $i++) {
 
-            $name = $faker->name;
+            $genders = ['male', 'female'];
+            $gender =  $genders[array_rand($genders)];
+
+            $name = $faker->name($gender);
 
             $regularUserId = $faker->uuid();
             DB::table('users')->insert([
@@ -75,12 +78,13 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('123456'),
             ]);
 
-
             DB::table('collaborator')->insert([
                 'id' => $faker->uuid(),
                 'name' => $name,
                 'owner_id' => $adminId,
                 'user_id' => $regularUserId,
+                'gender' => $gender,
+                'picture' => $this->getRandomPic($gender),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
@@ -225,6 +229,12 @@ class DatabaseSeeder extends Seeder
         $randIndex = array_rand($answers);
 
         return $answers[$randIndex];
+    }
+
+    private function getRandomPic($gender = 'male')
+    {
+        $gender = $gender === 'male' ? 'men' : 'women';
+        return 'https://randomuser.me/api/portraits/' . $gender . '/' . rand(1, 50) . '.jpg';
     }
 
 }

@@ -75,17 +75,17 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            @foreach($question['answers'] as $answerContent)
+                            @foreach($question['answers'] as $answerId => $answerContent)
                                 <ul class="messages">
                                     <li>
-                                        <img src="/images/img.jpg" class="avatar" alt="Avatar">
+                                        <img src="{{ $answerContent['collaborator']['picture']  }}" class="avatar" alt="Avatar">
                                         <div class="message_wrapper">
                                             <h4 class="heading">
-                                                <span class="label label-{{ $resultsColor[$answerContent['result']] }} ">{{ $results[$answerContent['result']] }}</span>
                                                 {{ $answerContent['collaborator']['name'] }}
                                             </h4>
                                             @if (!empty($answerContent['comment']))
                                             <blockquote class="message">
+                                                <span class="label label-{{ $resultsColor[$answerContent['result']] }} ">{{ $results[$answerContent['result']] }}</span>
                                                 {{ $answerContent['comment'] }}
                                             </blockquote>
                                             @endif

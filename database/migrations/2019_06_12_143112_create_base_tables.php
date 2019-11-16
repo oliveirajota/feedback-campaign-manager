@@ -35,6 +35,8 @@ class CreateBaseTables extends Migration
             $table->uuid('owner_id');
             $table->uuid('user_id');
             $table->string('name');
+            $table->string('picture');
+            $table->enum('gender', ['male', 'female'], 'male');
             $table->timestamps();
 
             $table->foreign('owner_id')->references('id')->on('users');

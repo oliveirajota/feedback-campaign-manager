@@ -59,6 +59,7 @@ class CampaignModel extends Model
         $data['created_at_f'] = date('d/m/Y', strtotime($array['created_at']));
         $data['updated_at_f'] = date('d/m/Y', strtotime($array['updated_at']));
         $data['is_publishable'] = $this->isPublishable();
+
         return $data;
     }
 

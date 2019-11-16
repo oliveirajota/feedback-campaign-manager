@@ -107,7 +107,8 @@ class CampaignController extends Controller
             'campaign' => $campaign->toArray(),
             'questions' => $campaign->questions()->get()->toArray(),
             'collaborators' => $campaign->collaborators()->get()->toArray(),
-            'summary' => $campaign->getSummary()
+            'summary' => $campaign->getSummary(),
+            'formatted' => $campaign->getFormattedFields()
         ]);
     }
 
@@ -265,7 +266,7 @@ class CampaignController extends Controller
         $resultsColor = [
             "danger","danger","warning","default","info","primary","success"
         ];
-        
+
         return view('admin.campaign.answers', [
             'campaign' => $campaignData['campaign'],
 //            'questions' => $campaignData['questions'],

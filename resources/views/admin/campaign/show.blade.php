@@ -118,7 +118,7 @@
                 <div class="x_content">
                     <h4>Status: <span class="label label-default">{{ $campaign['status'] }}</span></h4>
 
-                    @if ($campaign['is_publishable'])
+                    @if ($formatted['is_publishable'])
                     <a class="btn btn-success" href="http://dev.feedback.com/campaigns/{{ $campaign['id'] }}/publish">
                         <i class="fa fa-arrow-up"></i> Publish Campaign
                     </a>
