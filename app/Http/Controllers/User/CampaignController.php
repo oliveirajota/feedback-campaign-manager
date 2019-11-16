@@ -76,7 +76,8 @@ class CampaignController extends Controller
             'campaign' => $campaign->toArray(),
             'questions' => $questions,
             'questionResults' => $questionResults,
-            'subjectId' => $subjectId
+            'subjectId' => $subjectId,
+            'collaborator' => $campaignService->getCollaboratorInfo($subjectId)
         ]);
     }
 

@@ -22,7 +22,7 @@
             <div class="x_panel">
 
                 <div class="x_title">
-                    <h2>Feedback Campaign List</h2>
+                    <h2>Answering questions for {{ $collaborator['name'] }}</h2>
                     <div class="clearfix"></div>
                 </div>
 

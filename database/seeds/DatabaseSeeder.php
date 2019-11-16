@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
+        $faker->addProvider(new \Faker\Provider\pt_BR\Person($faker));
+        $faker->addProvider(new \Faker\Provider\pt_BR\Internet($faker));
 
         $user = DB::table('users')->where('email', '=', 'jotaoliveira@gmail.com')->first();
 
@@ -49,7 +51,7 @@ class DatabaseSeeder extends Seeder
             DB::table('base_question')->insert([
                 'id' => $faker->uuid(),
                 'owner_id' => $adminId,
-                'question' => str_replace('.', '?', $faker->sentence(6, true)),
+                'question' => $this->getRandomQuestion(),
                 'description' => $faker->sentence(10, true),
                 'type' => $questionType[array_rand($questionType, 1)],
                 'created_at' => date('Y-m-d H:i:s'),
@@ -62,10 +64,12 @@ class DatabaseSeeder extends Seeder
         // Create Users and Collaborators
         for ($i = 1; $i <= 10; $i++) {
 
+            $name = $faker->name;
+
             $regularUserId = $faker->uuid();
             DB::table('users')->insert([
                 'id' => $regularUserId,
-                'name' => $faker->name,
+                'name' => $name,
                 'email' => $faker->email,
                 'role' => 'regular',
                 'password' => bcrypt('123456'),
@@ -74,7 +78,7 @@ class DatabaseSeeder extends Seeder
 
             DB::table('collaborator')->insert([
                 'id' => $faker->uuid(),
-                'name' => $faker->name,
+                'name' => $name,
                 'owner_id' => $adminId,
                 'user_id' => $regularUserId,
                 'created_at' => date('Y-m-d H:i:s'),
@@ -160,7 +164,7 @@ class DatabaseSeeder extends Seeder
                 ->where('id', $campaignAnswer->id)
                 ->update([
                     'result' => rand(0, 6),
-                    'comment' => $faker->sentence(10, true)
+                    'comment' => $this->getRandonAnswer()
                 ]
             );
         }
@@ -175,7 +179,52 @@ class DatabaseSeeder extends Seeder
                 ]
             );
         }
+    }
 
+    private function getRandomQuestion()
+    {
+        $questions = [
+            'O que especificamente posso fazer para apoiar o propósito da nossa equipe?',
+            'Devo trabalhar mais de perto de quais pessoas da equipe?',
+            'Quais habilidades são mais importantes para desenvolvermos nos projetos da equipe?',
+            'Quais são os pontos positivos e negativos de minha relação com a equipe?',
+            'Especificamente, o que preciso trabalhar para estar pronto para desempenhar (função de interesse) dentro de nossos projetos?',
+            'Em quais momentos você considera que agi com maestria?',
+            'Quais funções você considera mais relacionadas ao seu perfil?',
+            'Que tipo de treinamento você considera que seja importante eu fazer nesse momento da carreira?',
+            'Você acredita que demonstro os valores organizacionais?',
+            'Eu contribuo para uma cultura de trabalho positiva?',
+            'Qual é uma palavra que melhor descreve meu trabalho? Por que?',
+            'Quanto tempo você acha que é importante que eu dedique ao projeto?',
+            'O que objetivamente posso fazer para acelerarmos os resultados desse projeto?',
+            'Qual você acha que é minha função mais importante nesse projeto?',
+            'Qual você acredita que seja minha maior fraqueza e minha maior força do projeto?',
+            'O que você acha que é um processo que podemos melhorar aqui?',
+            'Com o que você precisa de ajuda? Esta semana? Este mês? (Pergunta que o líder pode fazer)',
+            'Você considera minha comunicação efetiva?',
+            'Quais você considera os melhores canais para eu me comunicar com você?',
+            'Como podemos melhorar nossa comunicação?',
+            'Com que frequência você prefere receber meus feedbacks?',
+            'Você tem clareza do trabalho que está desenvolvendo?  Se não, quais aspectos da nossa comunicação não são claros?'
+        ];
+
+        $randIndex = array_rand($questions);
+
+        return $questions[$randIndex];
+    }
+
+    private function getRandonAnswer()
+    {
+        $answers = [
+            'Acho que deve melhorar',
+            'Acho que está bom',
+            'Acho que está péssimo',
+            'Não sei opinar sobre isso'
+        ];
+
+        $randIndex = array_rand($answers);
+
+        return $answers[$randIndex];
     }
 
 }

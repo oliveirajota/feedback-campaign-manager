@@ -67,7 +67,7 @@ class QuestionController extends Controller
 
         $questionService = new QuestionService();
         $questionService->createQuestion($data);
-        return redirect(route('admin.questions.index'))->with([
+        return redirect(route('questions.index'))->with([
             'msg' => [
                 'type' => 'success',
                 'txt' => 'Question Created Successfully'
@@ -127,7 +127,7 @@ class QuestionController extends Controller
         $questionService = new QuestionService();
         $questionService->update($id, $data);
 
-        return redirect(route('admin.questions.index'))->with([
+        return redirect(route('questions.index'))->with([
             'msg' => [
                 'type' => 'success',
                 'txt' => 'Question Updated Successfully'

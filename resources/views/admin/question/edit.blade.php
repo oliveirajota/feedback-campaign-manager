@@ -20,7 +20,7 @@
                     <form data-parsley-validate class="form-horizontal form-label-left" action="{{ route('questions.update', $question['id']) }}" method="post">
 
                         {{ Form::token() }}
-                        @method('put')
+                        <input type="hidden" name="_method" value="PUT" />
 
                         @if ($errors->any())
                             <div class="alert alert-danger">

@@ -65,5 +65,11 @@ class CampaignService
         }
     }
 
+    public function getCollaboratorInfo(string $collaboratorId)
+    {
+        $collaborator = CollaboratorModel::find($collaboratorId);
+        return $collaborator->toArray();
+    }
+
 
 }
